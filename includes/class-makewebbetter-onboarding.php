@@ -156,7 +156,9 @@ class Makewebbetter_Onboarding {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'check_mwb_active_plugins' );
+		$this->loader->add_filter( 'mwb_helper_valid_frontend_screens', $plugin_admin, 'add_mwb_frontend_screens' );
+		$this->loader->add_action( 'admin_footer', $plugin_admin, 'add_onboarding_popup_screen' );
 	}
 
 	/**
@@ -172,7 +174,6 @@ class Makewebbetter_Onboarding {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 	}
 
 	/**

@@ -72,9 +72,10 @@ class Makewebbetter_Onboarding_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
+		if ( $this->is_valid_page_screen() ) {
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/makewebbetter-onboarding-admin.css', array(), $this->version, 'all' );
-
+			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/makewebbetter-onboarding-admin.css', array(), $this->version, 'all' );
+		}
 	}
 
 	/**
@@ -96,8 +97,90 @@ class Makewebbetter_Onboarding_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/makewebbetter-onboarding-admin.js', array( 'jquery' ), $this->version, false );
+		if ( $this->is_valid_page_screen() ) {
 
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/makewebbetter-onboarding-admin.js', array( 'jquery' ), $this->version, false );
+		}
 	}
 
+	/**
+	 * Get all active plugins by MakeWebBetter.
+	 *
+	 * @since    1.0.0
+	 * Help : replace/define CURRENT_PLUGIN_FILE with plugin-folder/plugin-file.php
+	 */
+	public function check_mwb_active_plugins() {
+
+		if ( ! function_exists( 'get_plugins' ) ) {
+			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
+
+		$all_plugins = get_plugins();
+		if ( ! empty( $all_plugins ) && is_array( $all_plugins ) ) {
+			foreach ( $all_plugins as $plugin => $plugin_data ) {	
+
+				if ( is_plugin_active( $plugin ) ) {
+
+					// Only active plugins shall be checked.
+					if ( CURRENT_PLUGIN_FILE !== $plugin ) {
+
+						if ( ! defined( 'MAKEWEBBETTER_PLUGIN_EXISTS' ) && ( strpos( $plugin_data[ 'PluginURI' ], 'makewebbetter.com' )  !== false || strpos( $plugin_data[ 'AuthorURI' ], 'makewebbetter.com' ) !== false ) ) {
+
+							// Lets save the active plugins data, can be used afterwards for validation.
+							$active_mwb_plugins = get_option( '_mwb_active_plugins', array() );
+							array_push( $active_mwb_plugins, $plugin_data );
+							update_option(  '_mwb_active_plugins', $active_mwb_plugins );
+						}
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Get all valid screens to add scripts and templates.
+	 *
+	 * @since    1.0.0
+	 * Help : replace CURRENT_PLUGIN_FILE with plugin-folder/plugin-file.php
+	 */
+	public function add_mwb_frontend_screens( $valid_screens=array() ) {
+
+		if ( is_array( $valid_screens ) ) {
+			
+			// Push your screen here.
+			array_push( $valid_screens, 'toplevel_page_elementor' );
+		}
+		return $valid_screens;
+	}
+
+	/**
+	 * Get all valid screens to add scripts and templates.
+	 *
+	 * @since    1.0.0
+	 * Help : replace CURRENT_PLUGIN_FILE with plugin-folder/plugin-file.php
+	 */
+	public function add_onboarding_popup_screen() {
+		
+		if ( $this->is_valid_page_screen() ) {
+			
+			require_once plugin_dir_path( __FILE__ ) . '/on-boarding/makewebbetter-onboarding-template-display.php';
+		}
+	}
+
+	/**
+	 * Validate current screen.
+	 *
+	 * @since    1.0.0
+	 */
+	public function is_valid_page_screen(){
+
+		$screen = get_current_screen();
+
+		if ( ! empty( $screen->id ) ) {
+
+			return in_array( $screen->id, apply_filters( 'mwb_helper_valid_frontend_screens' , array( 'toplevel_page_upsell-order-bump-offer-for-woocommerce-setting' ) ) );
+		}
+	}
+
+// End of Class.
 }
