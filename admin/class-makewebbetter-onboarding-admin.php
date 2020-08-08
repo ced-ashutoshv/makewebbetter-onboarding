@@ -361,7 +361,7 @@ class Makewebbetter_Onboarding_Admin {
 			    	foreach ( $options as $option_value => $option_label ) {
 
 						$html .= '<label class="on-boarding-field-label" for="'. esc_attr( $option_value ) .'">' . esc_html( $option_label ) . '</label>';
-						$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $option_value ) . '" id="' . esc_attr( $option_value ) . '" ' . esc_attr( $required ) . ' ' . $is_multiple . ' >';
+						$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $option_value ) . '" id="' . esc_attr( $option_value ) . '" ' . $required . ' ' . $is_multiple . ' >';
 			    	}
 			    }
 
@@ -377,7 +377,7 @@ class Makewebbetter_Onboarding_Admin {
 			    	foreach ( $options as $option_id => $option_label ) {
 			   
 						$html .= '<label class="on-boarding-field-label" for="'. esc_attr( $option_id ) .'">' . esc_html( $option_label ) . '</label>';
-						$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field ' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '" id="' . esc_attr( $option_id ) . '" ' . esc_attr( $required ) . ' multiple="' . $multiple . '">';
+						$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field ' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '" id="' . esc_attr( $option_id ) . '">';
 			    	}
 			    }
 
