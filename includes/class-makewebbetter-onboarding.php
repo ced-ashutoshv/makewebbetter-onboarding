@@ -159,6 +159,7 @@ class Makewebbetter_Onboarding {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'check_mwb_active_plugins' );
 		$this->loader->add_filter( 'mwb_helper_valid_frontend_screens', $plugin_admin, 'add_mwb_frontend_screens' );
 		$this->loader->add_action( 'admin_footer', $plugin_admin, 'add_onboarding_popup_screen' );
+		$this->loader->add_filter( 'mwb_on_boarding_form_fields', $plugin_admin, 'add_on_boarding_form_fields' );
 	}
 
 	/**

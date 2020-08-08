@@ -172,7 +172,7 @@ class Makewebbetter_Onboarding_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function is_valid_page_screen(){
+	public function is_valid_page_screen() {
 
 		$screen = get_current_screen();
 
@@ -180,6 +180,251 @@ class Makewebbetter_Onboarding_Admin {
 
 			return in_array( $screen->id, apply_filters( 'mwb_helper_valid_frontend_screens' , array( 'toplevel_page_upsell-order-bump-offer-for-woocommerce-setting' ) ) );
 		}
+	}
+
+	/**
+	 * Add your onboarding form fields.
+	 *
+	 * @since    1.0.0
+	 */
+	public function add_on_boarding_form_fields() {
+
+		$current_user = wp_get_current_user();
+		if ( ! empty( $current_user ) ) {
+			$current_user_email = $current_user->user_email ? $current_user->user_email : '';
+		}
+
+		/**
+		 * Do not repeat id index.
+		 */
+		
+		$fields = array(
+			
+			/**
+			 * Input field with label.
+			 * Radio field with label ( select only one ).
+			 * Radio field with label ( select multiple one ).
+			 * Checkbox radio with label ( select only one ).
+			 * Checkbox field with label ( select multiple one ).
+			 * Only Label ( select multiple one ).
+			 * Select field with label ( select only one ).
+			 * Select2 field with label ( select multiple one ).
+			 * Email field with label. ( auto filled with admin email )
+			 */
+
+			rand() => array(
+				'id' => 'my-name',
+				'label' => esc_html__( 'Your name?' ),
+				'type' => 'text',
+				'name' => '',
+				'value' => '',
+				'required' => 'yes',
+				'extra-class' => '',
+			),
+
+			rand() => array(
+				'id' => 'my-gender',
+				'label' => esc_html__( 'He or She?' ),
+				'type' => 'radio',
+				'name' => 'my-gender',
+				'value' => '',
+				'multiple' => 'no',
+				'required' => 'yes',
+				'extra-class' => '',
+				'options' => array(
+					'male' => 'I\'m a Male',
+					'female' => 'I\'m a Female',
+					'deny' => 'Deny to admin.',
+				),
+			),
+
+			rand() => array(
+				'id' => 'my-hobby',
+				'label' => esc_html__( 'Where do you hangout?' ),
+				'type' => 'radio',
+				'name' => 'my-gender',
+				'value' => '',
+				'multiple' => 'yes',
+				'required' => 'yes',
+				'extra-class' => '',
+				'options' => array(
+					'out' => 'I\'m a Cricket guy',
+					'in' => 'I\'m a Chess guy',
+					'nerd' => 'Nothing Much',
+				),
+			),
+
+			rand() => array(
+				'id' => 'my-plugins',
+				'label' => esc_html__( 'Where plugin have you used?' ),
+				'type' => 'checkbox',
+				'name' => 'my-plugins',
+				'value' => '',
+				'multiple' => 'yes',
+				'required' => 'yes',
+				'extra-class' => '',
+				'options' => array(
+					'order-bump' => 'Upsell Order Bump Offer for WooCommerce',
+					'one-click-upsell' => 'WooCommerce One Click Upsell Funnel Pro',
+					'hubsopt' => 'HubSpot for WooCommerce',
+				),
+			),
+
+			rand() => array(
+				'id' => 'how-you-use',
+				'label' => esc_html__( 'How do you use it?' ),
+				'type' => 'select',
+				'name' => 'how-you-use',
+				'value' => '',
+				'multiple' => 'no',
+				'required' => 'yes',
+				'extra-class' => '',
+				'options' => array(
+					'order-bump-new' => 'Upsell Order Bump Offer for WooCommerce',
+					'one-click-upsell-new' => 'WooCommerce One Click Upsell Funnel Pro',
+					'hubsopt-new' => 'HubSpot for WooCommerce',
+				),
+			),
+
+			rand() => array(
+				'id' => 'how-you-use',
+				'label' => esc_html__( 'What else we have got ah?' ),
+				'type' => 'select2',
+				'name' => 'how-you-use',
+				'value' => '',
+				'multiple' => 'yes',
+				'required' => 'yes',
+				'extra-class' => '',
+				'options' => array(
+					'giftcard' => 'Giftcard',
+					'rma-ltie' => 'RMA',
+					'social-new' => 'Social Media posting',
+				),
+			),
+
+			rand() => array(
+				'id' => 'onboard-email',
+				'label' => esc_html__( 'Where to Send Gifts?' ),
+				'type' => 'email',
+				'name' => '',
+				'value' => $current_user_email,
+				'required' => 'yes',
+				'extra-class' => '',
+			),
+
+			rand() => array(
+				'id' => '',
+				'label' => esc_html__( 'Okay Nice to meet you!!' ),
+				'type' => 'label',
+				'name' => '',
+				'value' => '',
+				'required' => '',
+				'extra-class' => '',
+			),
+		);
+
+		return $fields;
+	}
+
+	/**
+	 * Returns form fields html.
+	 *
+	 * @since    1.0.0
+	 */
+	public function render_field_html( $attr=array() ) {
+
+		$id 	= ! empty( $attr[ 'id' ] ) ? $attr[ 'id' ] : '';
+		$name 	= ! empty( $attr[ 'name' ] ) ? $attr[ 'name' ] : '';
+		$label 	= ! empty( $attr[ 'label' ] ) ? $attr[ 'label' ] : '';
+		$type 	= ! empty( $attr[ 'type' ] ) ? $attr[ 'type' ] : '';
+		$class 	= ! empty( $attr[ 'extra-class' ] ) ? $attr[ 'extra-class' ] : '';
+		$value 	= ! empty( $attr[ 'value' ] ) ? $attr[ 'value' ] : '';
+		$options 	= ! empty( $attr[ 'options' ] ) ? $attr[ 'options' ] : array();
+		$multiple 	= ! empty( $attr[ 'multiple' ] ) && 'yes' == $attr[ 'multiple' ] ? 'yes' : 'no';
+		$required 	= ! empty( $attr[ 'required' ] ) ? 'required="required"' : '';
+
+		$html = '<div class ="mwb-form-single-field">';
+		switch ( $type ) {
+
+			case 'radio':
+			    
+			    // If field requires multiple answers.
+			    if ( ! empty( $options ) && is_array( $options ) ) {
+
+			    	$html .= '<label class="on-boarding-label" for="'. esc_attr( $id ) .'">' . esc_html( $label ) . '</label>';
+
+			    	$is_multiple = ! empty( $multiple ) && 'yes' != $multiple ? 'name = "' . $name  . '"' : '';
+			    	foreach ( $options as $option_value => $option_label ) {
+
+						$html .= '<label class="on-boarding-field-label" for="'. esc_attr( $option_value ) .'">' . esc_html( $option_label ) . '</label>';
+						$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $option_value ) . '" id="' . esc_attr( $option_value ) . '" ' . esc_attr( $required ) . ' ' . $is_multiple . ' >';
+			    	}
+			    }
+
+			    break;
+
+			case 'checkbox':
+			   
+			   // If field requires multiple answers.
+			    if ( ! empty( $options ) && is_array( $options ) ) {
+
+			    	$html .= '<label class="on-boarding-label"  for="'. esc_attr( $id ) .'">' . esc_html( $label ) . '</label>';
+					
+			    	foreach ( $options as $option_id => $option_label ) {
+			   
+						$html .= '<label class="on-boarding-field-label" for="'. esc_attr( $option_id ) .'">' . esc_html( $option_label ) . '</label>';
+						$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field ' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '" id="' . esc_attr( $option_id ) . '" ' . esc_attr( $required ) . ' multiple="' . $multiple . '">';
+			    	}
+			    }
+
+			    break;
+
+			case 'select':
+			case 'select2':
+
+			   // If field requires multiple answers.
+			    if ( ! empty( $options ) && is_array( $options ) ) {
+					
+					$is_multiple = 'yes' == $multiple ? 'multiple': '';
+					$select2 = ( 'yes' == $multiple && 'select' == $type ) || 'select2' == $type ? 'on-boarding-select2 ': '';
+
+					$html .= '<label class="on-boarding-label"  for="'. esc_attr( $id ) .'">' . esc_html( $label ) . '</label>';
+					$html .= '<select class="on-boarding-select-field ' . esc_attr( $select2 ) . esc_attr( $class ) . '" id="'. esc_attr( $id ) .'" name="'. esc_attr( $name ) .'[]" ' . $required . ' ' . $is_multiple . '>';
+
+						if ( 'select' == $type ) {
+							
+							$html .= '<option class="on-boarding-options" value="">' . esc_html( 'Select Any One Option...', 'textdomain' ) . '</option>';
+						}
+
+				    	foreach ( $options as $option_value => $option_label ) {
+							$html .= '<option class="on-boarding-options" value="' . esc_attr( $option_value ) . '">' . esc_attr( $option_label ) . '</option>';
+				    	}
+
+					$html .= '</select>';
+			    }
+
+			    break;
+
+			case 'label':
+
+				/**
+				 * Only a text in label.
+				 */
+				$html .= '<label class="on-boarding-label ' . esc_attr( $class ) . '" for="'. esc_attr( $id ) .'">' . esc_html( $label ) . '</label>';
+				break;
+
+			default:
+				
+				/**
+				 * Text/ Password/ Email.
+				 */
+				$html .= '<label class="on-boarding-label" for="'. esc_attr( $id ) .'">' . esc_html( $label ) . '</label>';
+				$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '"  name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" ' . esc_attr( $required ) . ' >';
+		}
+
+		$html .= '</div>';
+
+		return $html;
 	}
 
 // End of Class.

@@ -2,3 +2,59 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.mwb-on-boarding-form-submit {
+  text-align: center;
+}
+.mwb-on-boarding-submit {
+  background-color: #7979f6;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.mwb-on-boarding-wrapper-background {
+  position: fixed;
+  bottom: 60px;
+  right: 116px;
+  border: 3px solid #f1f1f1;
+  z-index: 99;
+}
+
+/* Add styles to the form container */
+.mwb-on-boarding-wrapper {
+  padding: 10px;
+  background-color: white;
+}
+
+/* Set a style for the submit/login button */
+.mwb-on-boarding-wrapper .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+.mwb-form-single-field {
+  background: #1fe2e2;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 6px;
+}
+.on-boarding-label {
+  color: red;
+  font-size: 12px;
+}
+.on-boarding-field-label {
+  color: green;
+  font-size: 12px;
+}
