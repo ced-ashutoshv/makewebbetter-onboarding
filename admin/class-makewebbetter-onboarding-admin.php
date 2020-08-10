@@ -218,7 +218,7 @@ class Makewebbetter_Onboarding_Admin {
 
 			rand() => array(
 				'id' => 'my-name',
-				'label' => esc_html__( 'Your name?' ),
+				'label' => esc_html__( 'First name' ),
 				'type' => 'text',
 				'name' => '',
 				'value' => '',
@@ -226,9 +226,21 @@ class Makewebbetter_Onboarding_Admin {
 				'extra-class' => '',
 			),
 
+			/*Custom code*/
+			rand() => array(
+				'id' => 'last-name',
+				'label' => esc_html__( 'Last Name' ),
+				'type' => 'text',
+				'name' => '',
+				'value' => '',
+				'required' => 'yes',
+				'extra-class' => '',
+			),
+			/*End*/
+
 			rand() => array(
 				'id' => 'my-gender',
-				'label' => esc_html__( 'He or She?' ),
+				'label' => esc_html__( 'Gender' ),
 				'type' => 'radio',
 				'name' => 'my-gender',
 				'value' => '',
@@ -360,8 +372,10 @@ class Makewebbetter_Onboarding_Admin {
 			    	$is_multiple = ! empty( $multiple ) && 'yes' != $multiple ? 'name = "' . $name  . '"' : '';
 			    	foreach ( $options as $option_value => $option_label ) {
 
+			    		$html .= '<div class="mwb-on-boarding-gender-field">';
 						$html .= '<label class="on-boarding-field-label" for="'. esc_attr( $option_value ) .'">' . esc_html( $option_label ) . '</label>';
 						$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $option_value ) . '" id="' . esc_attr( $option_value ) . '" ' . $required . ' ' . $is_multiple . ' >';
+						$html .= '</div>';
 			    	}
 			    }
 
@@ -375,9 +389,12 @@ class Makewebbetter_Onboarding_Admin {
 			    	$html .= '<label class="on-boarding-label"  for="'. esc_attr( $id ) .'">' . esc_html( $label ) . '</label>';
 					
 			    	foreach ( $options as $option_id => $option_label ) {
-			   
-						$html .= '<label class="on-boarding-field-label" for="'. esc_attr( $option_id ) .'">' . esc_html( $option_label ) . '</label>';
+			   			
+			   			$html .= '<div class="mwb-on-boarding-checkbox-wrapper">';
+						
 						$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field ' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '" id="' . esc_attr( $option_id ) . '">';
+						$html .= '<label class="on-boarding-field-label" for="'. esc_attr( $option_id ) .'">' . esc_html( $option_label ) . '</label>';
+						$html .= '</div>';
 			    	}
 			    }
 
