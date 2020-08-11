@@ -372,9 +372,10 @@ class Makewebbetter_Onboarding_Admin {
 			    	$is_multiple = ! empty( $multiple ) && 'yes' != $multiple ? 'name = "' . $name  . '"' : '';
 			    	foreach ( $options as $option_value => $option_label ) {
 
-			    		$html .= '<div class="mwb-on-boarding-gender-field">';
+			    		$html .= '<div class="mwb-on-boarding-radio-wrapper">';
+			    		$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $option_value ) . '" id="' . esc_attr( $option_value ) . '" ' . $required . ' ' . $is_multiple . ' >';
 						$html .= '<label class="on-boarding-field-label" for="'. esc_attr( $option_value ) .'">' . esc_html( $option_label ) . '</label>';
-						$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $option_value ) . '" id="' . esc_attr( $option_value ) . '" ' . $required . ' ' . $is_multiple . ' >';
+						
 						$html .= '</div>';
 			    	}
 			    }

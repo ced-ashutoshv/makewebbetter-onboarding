@@ -15,44 +15,36 @@
   opacity: 0.8;
   /* width: 280px; */
 }
-/* The popup form - hidden by default */
-/* .mwb-on-boarding-wrapper-background {
-  position: fixed;
-  bottom: 60px;
-  right: 116px;
-  border: 3px solid #f1f1f1;
-  z-index: 99;
-  } */
-  /* Add styles to the form container */
-  .mwb-on-boarding-wrapper {
-    padding: 10px;
-    background-color: white;
-  }
-  /* Set a style for the submit/login button */
-  .mwb-on-boarding-wrapper .btn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom:10px;
-    opacity: 0.8;
-  }
-  .mwb-form-single-field {
-    background: #1fe2e2;
-    margin: 10px;
-    border-radius: 5px;
-    padding: 6px;
-  }
-  .on-boarding-label {
-    color: red;
-    font-size: 12px;
-  }
-  .on-boarding-field-label {
-    color: green;
-    font-size: 12px;
-  }
+/* Add styles to the form container */
+.mwb-on-boarding-wrapper {
+  padding: 10px;
+  background-color: white;
+}
+/* Set a style for the submit/login button */
+.mwb-on-boarding-wrapper .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+.mwb-form-single-field {
+  background: #1fe2e2;
+  margin: 10px;
+  border-radius: 5px;
+  padding: 6px;
+}
+.on-boarding-label {
+  color: red;
+  font-size: 12px;
+}
+.on-boarding-field-label {
+  color: green;
+  font-size: 12px;
+}
 /*==========================================
 =            MWB POPUP FORM CSS            =
 ==========================================*/
@@ -66,6 +58,7 @@
   left: 25%;
   max-width: 800px;
   padding: 25px;
+  width: 100%;
   z-index: 999;
 }
 .mwb-on-boarding-wrapper-background:after {
@@ -82,7 +75,7 @@
   padding: 30px 15px;
 }
 .mwb-on-boarding-heading {
-  font-size: 36px;
+  font-size: 30px;
   line-height: 1.5;
   margin: 0;
   text-align: center;
@@ -128,55 +121,79 @@
   margin: 0 0 15px 0;
 }
 .mwb-form-single-field:first-child {
-  width: 46%;
   display: inline-block;
+  margin-right: 2%;
+  width: 46%;
 }
 .mwb-form-single-field:nth-child(2) {
-  width: 46%;
   display: inline-block;
+  width: 46%;
 }
 .on-boarding-field-label {
   color: rgba(0,0,0,0.6);
-  margin: 0 10px 0 0;
+  
 }
 input[type="email"] {
   padding: 10px;
-  width: 99%;
+  width: 100%;
 }
 input[type="text"] {
   padding: 10px;
   width: 100%;
 }
 .mwb-on-boarding-checkbox-wrapper {
-    margin: 0 0 10px 0;
+  margin: 0 0 10px 0;
 }
 input[type="checkbox"] {
   margin:0 15px 0 0;
 }
-
-.mwb-on-boarding-gender-field {
-    max-width: 33.33%;
-    display: inline-block;
-    width: 100%;
+input[type="radio"] {
+  margin:0 10px 0 0 !important;
+}
+.mwb-on-boarding-radio-wrapper {
+  display: inline-block;
+  max-width: 33.33%;
+  width: 100%;
 }
 .mwb-form-single-field:nth-child(6) {
-  width: 46%;
   display: inline-block;
+  width: 97%;
 }
 .mwb-form-single-field:nth-child(7) {
-  width: 46%;
   display: inline-block;
+  width: 97%;
 }
 div#s2id_how-you-use {
   display: inline-block;
   width: 100%;
 }
-li.select2-search-field {
+.select2-search-field {
   width: 100%;
 }
+.select2-search-choice {
+  background: #ffffff !important;
+  box-shadow: none !important;
+}
+.select2-search-choice {
+  max-width: 200px;
+  padding: 10px !important;
+  text-align: left;
+  width: 100%;
+}
+.select2-search-choice div{
+  margin-left: 20px;
+}
+.select2-search-choice-close {
+  left: 6px !important;
+  top: 11px !important;
+}
 select#how-you-use {
+  max-width: 100% !important;
   padding: 10px;
   width: 100%;
+}
+input#s2id_autogen1 {
+  width: 100% !important;
 }
 input#s2id_autogen1 {
   border:1px solid #7e8993;
@@ -184,8 +201,12 @@ input#s2id_autogen1 {
   padding: 11px;
   width: 100%;
 }
-ul.select2-choices {
+.select2-choices {
   border:none !important;
+}
+.on-boarding-label:last-child {
+    color: #3389bf !important;
+    font-weight: 600;
 }
 .mwb-on-boarding-form-btn__wrapper {
   text-align: center;
@@ -202,16 +223,16 @@ ul.select2-choices {
 .mwb-on-boarding-no_thanks {
   background-color: #ffff;
   border: 2px solid #016cb0 !important; 
+  color: #016cb0 !important;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #016cb0 !important;
 }
 .mwb-on-boarding-form-submit {
+  display: inline-block;
+  margin: 0 auto;
   max-width: 150px !important;
   width: 100%;
-  margin: 0 auto;
-  display: inline-block;
 }
 .mwb-on-boarding-submit {
   border: none;
@@ -250,78 +271,103 @@ ul.select2-choices {
  -webkit-transform: translateX(4px);
  transform: translateX(4px);
 }
+/*=============================================
+=            Section comment block            =
+=============================================*/
+@keyframes translate {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 2%;
+  }
+}
+/*=====  End of Section comment block  ======*/
 /*=====  End of MWB POPUP FORM CSS  ======*/
-
 /*=====================================
 =            MEDIA QUERIES            =
 =====================================*/
 @media only screen and (max-width: 992px) {
-  
   .mwb-form-single-field:first-child {
-  width: 96%;
- 
-}
-.mwb-form-single-field:nth-child(2) {
-  width: 96%;
- 
-}
-.mwb-form-single-field:nth-child(6) {
-  width: 96%;
- 
-}
-.mwb-form-single-field:nth-child(7) {
-  width: 96%;
-  
-}
-select#how-you-use {
+    width: 96%;
+  }
+  .mwb-form-single-field:nth-child(2) {
+    width: 96%;
+  }
+  .mwb-form-single-field:nth-child(6) {
+    width: 96%;
+  }
+  .mwb-form-single-field:nth-child(7) {
+    width: 96%;
+  }
+  input#s2id_autogen1 {
     width: 100% !important;
-    max-width: 100%;
+  }
+  input#s2id_autogen1 {
+    width: 100% !important;
+  }
+  input[type="email"] {
+    width: 99% !important;
+  }
+  select#how-you-use {
     display: block !important;
-}
-input#s2id_autogen1 {
+    max-width: 100%;
+    width: 100% !important;
+  }
+  input#s2id_autogen1 {
     width: 100%;
-}
-.mwb-on-boarding-wrapper-background {
-    position: absolute;
+  }
+  .mwb-on-boarding-wrapper-background {
     content: "";
-    top: 25%;
-   
-    
-    padding: 25px;
-    z-index: 999;
     left: 0;
-    right: 0;
     margin: 0 auto;
-}
-
+    padding: 25px;
+    position: absolute;
+    right: 0;
+    top: 14% !important;
+    z-index: 999;
+  }
 } 
+@media only screen and (max-width: 600px) {
+  .mwb-on-boarding-radio-wrapper {
+    margin-bottom: 15px;
+    max-width: 100%;
+    width: 100%;
+  }
+  input[type="email"] {
+    width: 100% !important;
+  }
+}
 @media only screen and (max-width: 405px) {
   .mwb-on-boarding-form-submit {
-  display: block;
-  max-width: 100% !important;
-  width: 100%;
-  padding: 15px 10px;
-}
-.mwb-on-boarding-form-verify:after {
-  top: 31px;
-  right: 25px;
-}
-}
-@media only screen and (max-width: 600px) {
-  .mwb-on-boarding-gender-field {
-    max-width: 100%;
+    display: block;
+    max-width: 100% !important;
+    padding: 15px 10px;
     width: 100%;
-    margin-bottom: 15px;
   }
-
+  .mwb-on-boarding-form-verify:after {
+    right: 25px;
+    top: 31px;
+  }
+  .mwb-form-single-field:first-child {
+    width: 90%;
+  }
+  .mwb-form-single-field:nth-child(2) {
+    width: 90%;
+  }
+  .mwb-form-single-field:nth-child(6) {
+    width: 90%;
+  }
+  .mwb-form-single-field:nth-child(7) {
+    width: 90%;
+  }
+  input[type="email"] {
+    width: 96% !important;
+  }
 }
 @media only screen and (max-width: 350px) {
   .mwb-on-boarding-heading {
     font-size: 30px;
   }
-
 }
-
-
 /*=====  End of MEDIA QUERIES  ======*/
-
