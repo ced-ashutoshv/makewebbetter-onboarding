@@ -34,12 +34,9 @@
 				<div class="mwb-on-boarding-form-btn__wrapper">
 					<div class="mwb-on-boarding-form-submit mwb-on-boarding-form-verify ">
 					<input type="submit" class="mwb-on-boarding-submit mwb-on-boarding-verify " value="Send Us">
-					
-						
-					
 				</div>
-				<div class="mwb-on-boarding-form-submit mwb-on-boarding-form-no_thanks">
-					<input type="submit" class="mwb-on-boarding-submit mwb-on-boarding-no_thanks" value="No Thanks">
+				<div class="mwb-on-boarding-form-no_thanks">
+					<a href="#" class="mwb-on-boarding-no_thanks"><?php esc_html_e( 'Skip For Now', 'makewebbetter-onboarding' ) ?></a>
 				</div>
 				</div>
 			</form>

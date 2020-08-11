@@ -13,7 +13,6 @@
   border: none;
   cursor: pointer;
   opacity: 0.8;
-  /* width: 280px; */
 }
 /* Add styles to the form container */
 .mwb-on-boarding-wrapper {
@@ -121,21 +120,15 @@
   margin: 0 0 15px 0;
 }
 .mwb-form-single-field:first-child {
-  display: inline-block;
   margin-right: 2%;
-  width: 46%;
-}
-.mwb-form-single-field:nth-child(2) {
-  display: inline-block;
-  width: 46%;
 }
 .on-boarding-field-label {
   color: rgba(0,0,0,0.6);
-  
 }
 input[type="email"] {
   padding: 10px;
   width: 100%;
+  max-height: 44px !important;
 }
 input[type="text"] {
   padding: 10px;
@@ -152,7 +145,7 @@ input[type="radio"] {
 }
 .mwb-on-boarding-radio-wrapper {
   display: inline-block;
-  max-width: 33.33%;
+  max-width:25%;
   width: 100%;
 }
 .mwb-form-single-field:nth-child(6) {
@@ -163,9 +156,10 @@ input[type="radio"] {
   display: inline-block;
   width: 97%;
 }
-div#s2id_how-you-use {
-  display: inline-block;
+.on-boarding-select-field {
+  min-height: 43px !important;
   width: 100%;
+  max-width: inherit !important;
 }
 .select2-search-field {
   width: 100%;
@@ -193,13 +187,13 @@ select#how-you-use {
   width: 100%;
 }
 input#s2id_autogen1 {
-  width: 100% !important;
-}
-input#s2id_autogen1 {
   border:1px solid #7e8993;
   border-radius: 3px;
   padding: 11px;
-  width: 100%;
+  width: 100% !important;
+  color: #32373c !important;
+  font-family: inherit !important;
+  font-size: 15px;
 }
 .select2-choices {
   border:none !important;
@@ -222,11 +216,10 @@ input#s2id_autogen1 {
 }
 .mwb-on-boarding-no_thanks {
   background-color: #ffff;
-  border: 2px solid #016cb0 !important; 
   color: #016cb0 !important;
-  font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
+  text-decoration: none;
 }
 .mwb-on-boarding-form-submit {
   display: inline-block;
@@ -270,6 +263,9 @@ input#s2id_autogen1 {
  -o-transform: translateX(4px);
  -webkit-transform: translateX(4px);
  transform: translateX(4px);
+}
+.mwb-on-boarding-form-no_thanks {
+  text-align: end;
 }
 /*=============================================
 =            Section comment block            =

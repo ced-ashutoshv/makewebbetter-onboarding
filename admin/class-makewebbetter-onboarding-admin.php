@@ -198,6 +198,10 @@ class Makewebbetter_Onboarding_Admin {
 			$current_user_email = $current_user->user_email ? $current_user->user_email : '';
 		}
 
+		$currency_symbol = get_woocommerce_currency_symbol();
+		$store_name = get_the_title( wc_get_page_id( 'shop' ) );
+		$store_url = get_home_url();
+
 		/**
 		 * Do not repeat id index.
 		 */
@@ -217,110 +221,60 @@ class Makewebbetter_Onboarding_Admin {
 			 */
 
 			rand() => array(
-				'id' => 'my-name',
-				'label' => esc_html__( 'First name' ),
-				'type' => 'text',
-				'name' => '',
-				'value' => '',
-				'required' => 'yes',
-				'extra-class' => '',
-			),
-
-			/*Custom code*/
-			rand() => array(
-				'id' => 'last-name',
-				'label' => esc_html__( 'Last Name' ),
-				'type' => 'text',
-				'name' => '',
-				'value' => '',
-				'required' => 'yes',
-				'extra-class' => '',
-			),
-			/*End*/
-
-			rand() => array(
-				'id' => 'my-gender',
-				'label' => esc_html__( 'Gender' ),
+				'id' => 'monthly-revenue',
+				'label' => esc_html__( 'What is your monthly revenue?', 'makewebbetter-onboarding' ),
 				'type' => 'radio',
-				'name' => 'my-gender',
+				'name' => 'monthly-revenue',
 				'value' => '',
 				'multiple' => 'no',
 				'required' => 'yes',
 				'extra-class' => '',
 				'options' => array(
-					'male' => 'I\'m a Male',
-					'female' => 'I\'m a Female',
-					'deny' => 'Deny to admin.',
+					'0-500' 		=> $currency_symbol . '0-' . $currency_symbol . '500',
+					'501-5000'  		=> $currency_symbol . '501-' . $currency_symbol . '5000',
+					'5001-10000' 		=> $currency_symbol . '5001-' . $currency_symbol . '10000',
+					'10000+'  		=> $currency_symbol . '10000+'
 				),
 			),
-
+ 
 			rand() => array(
-				'id' => 'my-hobby',
-				'label' => esc_html__( 'Where do you hangout?' ),
-				'type' => 'radio',
-				'name' => 'my-gender',
-				'value' => '',
-				'multiple' => 'yes',
-				'required' => 'yes',
-				'extra-class' => '',
-				'options' => array(
-					'out' => 'I\'m a Cricket guy',
-					'in' => 'I\'m a Chess guy',
-					'nerd' => 'Nothing Much',
-				),
-			),
-
-			rand() => array(
-				'id' => 'my-plugins',
-				'label' => esc_html__( 'Where plugin have you used?' ),
-				'type' => 'checkbox',
-				'name' => 'my-plugins',
-				'value' => '',
-				'multiple' => 'yes',
-				'required' => 'yes',
-				'extra-class' => '',
-				'options' => array(
-					'order-bump' => 'Upsell Order Bump Offer for WooCommerce',
-					'one-click-upsell' => 'WooCommerce One Click Upsell Funnel Pro',
-					'hubsopt' => 'HubSpot for WooCommerce',
-				),
-			),
-
-			rand() => array(
-				'id' => 'how-you-use',
-				'label' => esc_html__( 'How do you use it?' ),
+				'id' => 'industry_type',
+				'label' => esc_html__( 'What industry defines your business?', 'makewebbetter-onboarding' ),
 				'type' => 'select',
-				'name' => 'how-you-use',
-				'value' => '',
-				'multiple' => 'no',
-				'required' => 'yes',
-				'extra-class' => '',
-				'options' => array(
-					'order-bump-new' => 'Upsell Order Bump Offer for WooCommerce',
-					'one-click-upsell-new' => 'WooCommerce One Click Upsell Funnel Pro',
-					'hubsopt-new' => 'HubSpot for WooCommerce',
-				),
-			),
-
-			rand() => array(
-				'id' => 'how-you-use',
-				'label' => esc_html__( 'What else we have got ah?' ),
-				'type' => 'select2',
-				'name' => 'how-you-use',
+				'name' => 'industry_type',
 				'value' => '',
 				'multiple' => 'yes',
 				'required' => 'yes',
 				'extra-class' => '',
 				'options' => array(
-					'giftcard' => 'Giftcard',
-					'rma-ltie' => 'RMA',
-					'social-new' => 'Social Media posting',
+					'agency' 				=> 'Agency',
+					'consumer-services' 	=> 'Consumer Services',
+					'ecommerce' 			=> 'Ecommerce',
+					'financial-services' 	=> 'Financial Services',
+					'healthcare' 			=> 'Healthcare',
+					'manufacturing' 		=> 'Manufacturing',
+					'nonprofit-and-education' => 'Nonprofit and Education',
+					'professional-services' => 'Professional Services',
+					'real-estate' 			=> 'Real Estate',
+					'software' 				=> 'Software',
+					'startups' 				=> 'Startups',
+					'restaurant' 			=> 'Restaurant',
+					'fitness' 				=> 'Fitness',
+					'jewelry' 				=> 'Jewelry',
+					'beauty' 				=> 'Beauty',
+					'celebrity' 			=> 'Celebrity',
+					'gaming' 				=> 'Gaming',
+					'government' 			=> 'Government',
+					'sports' 				=> 'Sports',
+					'retail-store' 			=> 'Retail Store',
+					'travel' 				=> 'Travel',
+					'political-campaign' 	=> 'Political Campaign',
 				),
 			),
 
 			rand() => array(
 				'id' => 'onboard-email',
-				'label' => esc_html__( 'Where to Send Gifts?' ),
+				'label' => esc_html__( 'What is the best email address to contact you?' ),
 				'type' => 'email',
 				'name' => '',
 				'value' => $current_user_email,
@@ -329,11 +283,21 @@ class Makewebbetter_Onboarding_Admin {
 			),
 
 			rand() => array(
-				'id' => '',
-				'label' => esc_html__( 'Okay Nice to meet you!!' ),
-				'type' => 'label',
-				'name' => '',
-				'value' => '',
+				'id' => 'store-name',
+				'label' => '',
+				'type' => 'hidden',
+				'name' => 'store-name',
+				'value' => $store_name,
+				'required' => '',
+				'extra-class' => '',
+			),
+
+			rand() => array(
+				'id' => 'store-url',
+				'label' => '',
+				'type' => 'hidden',
+				'name' => 'store-url',
+				'value' => $store_url,
 				'required' => '',
 				'extra-class' => '',
 			),
@@ -358,8 +322,12 @@ class Makewebbetter_Onboarding_Admin {
 		$options 	= ! empty( $attr[ 'options' ] ) ? $attr[ 'options' ] : array();
 		$multiple 	= ! empty( $attr[ 'multiple' ] ) && 'yes' == $attr[ 'multiple' ] ? 'yes' : 'no';
 		$required 	= ! empty( $attr[ 'required' ] ) ? 'required="required"' : '';
+		
+		$html = '';
 
-		$html = '<div class ="mwb-form-single-field">';
+		if ( $type != 'hidden' ) :
+			$html = '<div class ="mwb-form-single-field">';
+		endif;
 		switch ( $type ) {
 
 			case 'radio':
@@ -444,7 +412,9 @@ class Makewebbetter_Onboarding_Admin {
 				$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '"  name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" ' . esc_attr( $required ) . ' >';
 		}
 
-		$html .= '</div>';
+		if ( $type != 'hidden' ) :
+			$html .= '</div>';
+		endif;
 
 		return $html;
 	}
