@@ -165,7 +165,7 @@ class Makewebbetter_Onboarding_Admin {
 	 */
 	public function add_onboarding_popup_screen() {
 		
-		if ( $this->is_valid_page_screen() ) {
+		if ( $this->is_valid_page_screen() && empty( get_option( 'onboarding-data-sent' ) ) ) {
 			
 			require_once plugin_dir_path( __FILE__ ) . '/on-boarding/makewebbetter-onboarding-template-display.php';
 		}
@@ -185,6 +185,20 @@ class Makewebbetter_Onboarding_Admin {
 			return in_array( $screen->id, apply_filters( 'mwb_helper_valid_frontend_screens' , array( 'toplevel_page_upsell-order-bump-offer-for-woocommerce-setting' ) ) );
 		}
 	}
+
+	/**
+	 * Validate current screen.
+	 *
+	 * @since    1.0.0
+	 */
+	public function should_show_onboarding_popup() {
+
+		if ( ! empty( $screen->id ) ) {
+
+			return in_array( $screen->id, apply_filters( 'mwb_helper_valid_frontend_screens' , array( 'toplevel_page_upsell-order-bump-offer-for-woocommerce-setting' ) ) );
+		}
+	}
+
 
 	/**
 	 * Add your onboarding form fields.
@@ -283,6 +297,16 @@ class Makewebbetter_Onboarding_Admin {
 			),
 
 			rand() => array(
+				'id' => 'onboard-number',
+				'label' => esc_html__( 'What is your contact number?' ),
+				'type' => 'text',
+				'name' => '',
+				'value' => '',
+				'required' => 'yes',
+				'extra-class' => '',
+			),
+
+			rand() => array(
 				'id' => 'store-name',
 				'label' => '',
 				'type' => 'hidden',
@@ -298,6 +322,16 @@ class Makewebbetter_Onboarding_Admin {
 				'type' => 'hidden',
 				'name' => 'store-url',
 				'value' => $store_url,
+				'required' => '',
+				'extra-class' => '',
+			),
+
+			rand() => array(
+				'id' => 'show-counter',
+				'label' => '',
+				'type' => 'hidden',
+				'name' => 'show-counter',
+				'value' => get_option( 'onboarding-show-counter', 'not-sent' ),
 				'required' => '',
 				'extra-class' => '',
 			),
@@ -409,7 +443,7 @@ class Makewebbetter_Onboarding_Admin {
 				 * Text/ Password/ Email.
 				 */
 				$html .= '<label class="on-boarding-label" for="'. esc_attr( $id ) .'">' . esc_html( $label ) . '</label>';
-				$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '"  name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" ' . esc_attr( $required ) . ' >';
+				$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '"  name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" ' .  $required  . ' >';
 		}
 
 		if ( $type != 'hidden' ) :

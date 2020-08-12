@@ -59,6 +59,7 @@
   padding: 25px;
   width: 100%;
   z-index: 999;
+  display: none;
 }
 .mwb-on-boarding-wrapper-background:after {
   background: rgba(0,0,0,0.4);
@@ -266,6 +267,9 @@ input#s2id_autogen1 {
 }
 .mwb-on-boarding-form-no_thanks {
   text-align: end;
+}
+.onboard-popup-show {
+  display: block;
 }
 /*=============================================
 =            Section comment block            =
