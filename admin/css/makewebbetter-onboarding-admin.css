@@ -345,6 +345,10 @@ input[type="text"] {
   input[type="email"] {
     width: 99% !important;
   }
+  .onboard-popup-show {
+    top: 5% !important;
+    transition: 0.5s linear all;
+  }
 }
 @media only screen and (max-width: 453px) {
   .mwb-on-boarding-form-verify  {
