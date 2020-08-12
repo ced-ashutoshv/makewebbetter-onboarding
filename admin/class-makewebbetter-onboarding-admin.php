@@ -104,6 +104,15 @@ class Makewebbetter_Onboarding_Admin {
 			wp_register_script( 'select2', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js', array( 'jquery' ), '1.0', true );
 		    wp_enqueue_script( 'select2' );
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/makewebbetter-onboarding-admin.js', array( 'jquery' ), $this->version, false );
+
+			wp_localize_script(
+				$this->plugin_name,
+				'mwb',
+				array(
+					'ajaxurl'       => admin_url( 'admin-ajax.php' ),
+					'auth_nonce'    => wp_create_nonce( 'mwb_onboarding_nonce' ),
+				)
+			);
 		}
 	}
 
@@ -114,7 +123,7 @@ class Makewebbetter_Onboarding_Admin {
 	 * Help : replace/define CURRENT_PLUGIN_FILE with plugin-folder/plugin-file.php
 	 */
 	public function check_mwb_active_plugins() {
-
+return;
 		if ( ! function_exists( 'get_plugins' ) ) {
 			require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 		}
@@ -451,6 +460,44 @@ class Makewebbetter_Onboarding_Admin {
 		endif;
 
 		return $html;
+	}
+
+
+	/**
+	 * Send the data to MWB server.
+	 *
+	 * @since    1.0.0
+	 */
+	public function send_onboarding_data() {
+
+		check_ajax_referer( 'mwb_onboarding_nonce', 'nonce' );
+
+		$form_data = ! empty( $_POST[ 'form_data' ] ) ? json_decode( stripslashes( $_POST[ 'form_data' ] ) ) : '';
+		$formatted_data = array();
+		$formatted_data[ 'currency' ] = get_woocommerce_currency_symbol();
+
+		if ( ! empty( $form_data ) && is_array( $form_data ) ) {
+
+			foreach ( $form_data as $key => $input ) {
+				if( false !== strrpos( $input->name, '[]' ) ) {
+
+					$new_key = str_replace( '[]', '', $input->name );
+					if ( empty( $formatted_data[ $new_key ] ) ) {
+						$formatted_data[ $new_key ] = array();
+					}
+
+					array_push( $formatted_data[ $new_key ], $input->value );
+				}
+
+				else {
+
+					$formatted_data[ $input->name ] = $input->value;
+				}
+			}
+		}
+
+		echo json_encode( $formatted_data );
+		wp_die();
 	}
 
 // End of Class.
