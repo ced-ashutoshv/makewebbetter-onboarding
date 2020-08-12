@@ -59,13 +59,13 @@
   padding: 25px;
   position: absolute;
   right: 0;
-  top: -115%;
+  top: -500% !important;
   transition: 0.5s linear all;
   width: 100%;
   z-index: 999;
 }
 .onboard-popup-show {
-  top:2%;
+  top:1% !important;
   transition: 0.5s linear all;
 }
 .mwb-on-boarding-wrapper-background:after {
@@ -79,7 +79,7 @@
   z-index: -1;
 }
 .mwb-on-boarding-wrapper {
-  padding: 30px 15px;
+  padding: 25px 15px;
 }
 .mwb-on-boarding-heading {
   font-size: 30px;
@@ -126,9 +126,6 @@
   font-size: 15px;
   font-weight: 500;
   margin: 0 0 15px 0;
-}
-.mwb-form-single-field:first-child {
-  margin-right: 2%;
 }
 .on-boarding-field-label {
   color: rgba(0,0,0,0.6);
@@ -177,10 +174,10 @@ input[type="radio"] {
   box-shadow: none !important;
 }
 .select2-search-choice {
-  max-width: 200px;
+  float: none !important
   padding: 10px !important;
   text-align: left;
-  width: 100%;
+  width: 98%;
 }
 .select2-search-choice div{
   margin-left: 20px;
@@ -207,8 +204,8 @@ input#s2id_autogen1 {
   border:none !important;
 }
 .on-boarding-label:last-child {
-    color: #3389bf !important;
-    font-weight: 600;
+  color: #3389bf !important;
+  font-weight: 600;
 }
 .mwb-on-boarding-form-btn__wrapper {
   text-align: center;
@@ -279,37 +276,26 @@ input#s2id_autogen1 {
   display: block;
 }
 .mwb-form-single-field:nth-child(3) {
-    box-sizing: border-box;
-    display: inline-block;
-    max-width: 47%;
-    width: 100%;
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 47%;
+  width: 100%;
 }
 .mwb-form-single-field:nth-child(4) {
-    box-sizing: border-box;
-    display: inline-block;
-    max-width: 47%;
-    width: 100%;
-   
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 47%;
+  width: 100%;
 }
 .mwb-on-boarding-form-btn__wrapper {
-    margin: 30px 0 0 0;
+  margin: 20px 0 0 0;
 }
 .mwb-on-boarding-form-no_thanks {
-    margin: 30px 0 0;
+  margin: 15px 0 0;
 }
-
-/*=============================================
-=            Section comment block            =
-=============================================*/
-@keyframes translate {
-  0% {
-    top: 0;
-  }
-  100% {
-    top: 2%;
-  }
+.select2-search-choice {
+  padding: 10px !important;
 }
-/*=====  End of Section comment block  ======*/
 /*=====  End of MWB POPUP FORM CSS  ======*/
 /*=====================================
 =            MEDIA QUERIES            =
@@ -327,33 +313,23 @@ input#s2id_autogen1 {
 .mwb-form-single-field:nth-child(7) {
   width: 96%;
 } 
-  input#s2id_autogen1 {
-    width: 100% !important;
-  }
-  input#s2id_autogen1 {
-    width: 100% !important;
-  }
-  input[type="email"] {
-    width: 99% !important;
-  }
-  select#how-you-use {
-    display: block !important;
-    max-width: 100%;
-    width: 100% !important;
-  }
-  input#s2id_autogen1 {
-    width: 100%;
-  }
-  .mwb-on-boarding-wrapper-background {
-    content: "";
-    left: 0;
-    margin: 0 auto;
-    padding: 25px;
-    position: absolute;
-    right: 0;
-    top: 14% !important;
-    z-index: 999;
-  }
+input#s2id_autogen1 {
+  width: 100% !important;
+}
+input#s2id_autogen1 {
+  width: 100% !important;
+}
+input[type="email"] {
+  width: 99% !important;
+}
+select#how-you-use {
+  display: block !important;
+  max-width: 100%;
+  width: 100% !important;
+}
+input#s2id_autogen1 {
+  width: 100%;
+}
 } 
 @media only screen and (max-width: 600px) {
   .mwb-on-boarding-radio-wrapper {
@@ -364,6 +340,7 @@ input#s2id_autogen1 {
   input[type="email"] {
     width: 99% !important;
   }
+
 }
 @media only screen and (max-width: 405px) {
   .mwb-on-boarding-form-submit {
@@ -399,45 +376,37 @@ input#s2id_autogen1 {
 }
 @media only screen and (max-width: 992px) {
   input[type="text"] {
-  width: 98%;
-}
-
+    width: 98%;
+  }
 }
 @media only screen and (max-width: 796px) {
   .mwb-form-single-field:nth-child(3) {
-    
     display: block;
     max-width: 97%;
     width: 100%;
-}
-.mwb-form-single-field:nth-child(4) {
-    
+  }
+  .mwb-form-single-field:nth-child(4) {
     display:block;
     max-width: 97%;
     width: 100%;
-   
-}
-input[type="text"] {
-  width: 99%;
-}
+  }
+  input[type="text"] {
+    width: 99%;
+  }
 }
 @media only screen and (max-width: 405px) {
-.mwb-form-single-field:nth-child(2) {
+  .mwb-form-single-field:nth-child(2) {
     width: 93%;
-}
- .mwb-form-single-field:nth-child(3) {
-    
+  }
+  .mwb-form-single-field:nth-child(3) {
     display: block;
     max-width: 97%;
     width: 100%;
-}
-.mwb-form-single-field:nth-child(4) {
-    
+  }
+  .mwb-form-single-field:nth-child(4) {
     display:block;
     max-width: 94%;
     width: 100%;
-   
-}
-
+  }
 }
 /*=====  End of MEDIA QUERIES  ======*/
