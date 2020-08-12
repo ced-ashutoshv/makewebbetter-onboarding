@@ -153,14 +153,6 @@ input[type="radio"] {
   max-width:25%;
   width: 100%;
 }
-.mwb-form-single-field:nth-child(6) {
-  display: inline-block;
-  width: 97%;
-}
-.mwb-form-single-field:nth-child(7) {
-  display: inline-block;
-  width: 97%;
-}
 .on-boarding-select-field {
   min-height: 43px !important;
   width: 100%;
@@ -177,7 +169,6 @@ input[type="radio"] {
   float: none !important
   padding: 10px !important;
   text-align: left;
-  width: 98%;
 }
 .select2-search-choice div{
   margin-left: 20px;
@@ -244,7 +235,7 @@ input#s2id_autogen1 {
   border-radius: 3px;
 }
 .mwb-on-boarding-form-verify {
-  margin: 0 20px 0 0;
+  margin: 0 20px 0 110px;
   position: relative;
 }
 .mwb-on-boarding-form-verify:after {
@@ -291,7 +282,9 @@ input#s2id_autogen1 {
   margin: 20px 0 0 0;
 }
 .mwb-on-boarding-form-no_thanks {
-  margin: 15px 0 0;
+  display: inline-block;
+  float: right;
+  margin: 20px 0 0 0px;
 }
 .select2-search-choice {
   padding: 10px !important;
@@ -307,12 +300,6 @@ input#s2id_autogen1 {
 .mwb-form-single-field:nth-child(2) {
   width: 96%;
 }
-.mwb-form-single-field:nth-child(6) {
-  width: 96%;
-}
-.mwb-form-single-field:nth-child(7) {
-  width: 96%;
-} 
 input#s2id_autogen1 {
   width: 100% !important;
 }
@@ -330,55 +317,10 @@ select#how-you-use {
 input#s2id_autogen1 {
   width: 100%;
 }
-} 
-@media only screen and (max-width: 600px) {
-  .mwb-on-boarding-radio-wrapper {
-    margin-bottom: 15px;
-    max-width: 100%;
-    width: 100%;
-  }
-  input[type="email"] {
-    width: 99% !important;
-  }
-
-}
-@media only screen and (max-width: 405px) {
-  .mwb-on-boarding-form-submit {
-    display: block;
-    max-width: 100% !important;
-    padding: 15px 10px;
-    width: 100%;
-  }
-  .mwb-on-boarding-form-verify:after {
-    right: 25px;
-    top: 32px;
-  }
-  .mwb-form-single-field:first-child {
-    width: 90%;
-  }
-  .mwb-form-single-field:nth-child(2) {
-    width: 90%;
-  }
-  .mwb-form-single-field:nth-child(6) {
-    width: 90%;
-  }
-  .mwb-form-single-field:nth-child(7) {
-    width: 90%;
-  }
-  input[type="email"] {
-    width: 96% !important;
-  }
-}
-@media only screen and (max-width: 350px) {
-  .mwb-on-boarding-heading {
-    font-size: 30px;
-  }
-}
-@media only screen and (max-width: 992px) {
-  input[type="text"] {
+input[type="text"] {
     width: 98%;
   }
-}
+} 
 @media only screen and (max-width: 796px) {
   .mwb-form-single-field:nth-child(3) {
     display: block;
@@ -394,7 +336,40 @@ input#s2id_autogen1 {
     width: 99%;
   }
 }
+@media only screen and (max-width: 600px) {
+  .mwb-on-boarding-radio-wrapper {
+    margin-bottom: 15px;
+    max-width: 100%;
+    width: 100%;
+  }
+  input[type="email"] {
+    width: 99% !important;
+  }
+}
+@media only screen and (max-width: 453px) {
+  .mwb-on-boarding-form-verify  {
+    display: block !important;
+    text-align: center !important;
+    margin: 0 20px 0 97px !important;
+  }
+  .mwb-on-boarding-form-no_thanks {
+    float:none !important;
+  }
+}
 @media only screen and (max-width: 405px) {
+  .mwb-on-boarding-form-submit {
+    max-width: 100% !important;
+    padding: 15px 10px;
+    width: 100%;
+    margin: 0 20px 0 0 !important;
+  }
+  .mwb-on-boarding-form-verify:after {
+    right: 25px;
+    top: 32px;
+  }
+  input[type="email"] {
+    width: 96% !important;
+  }
   .mwb-form-single-field:nth-child(2) {
     width: 93%;
   }
@@ -407,6 +382,11 @@ input#s2id_autogen1 {
     display:block;
     max-width: 94%;
     width: 100%;
+  }
+   .mwb-on-boarding-form-verify  {
+    display: block !important;
+    text-align: center !important;
+    margin: 0 20px 0 0px !important;
   }
 }
 /*=====  End of MEDIA QUERIES  ======*/
