@@ -452,7 +452,7 @@ return;
 				 * Text/ Password/ Email.
 				 */
 				$html .= '<label class="on-boarding-label" for="'. esc_attr( $id ) .'">' . esc_html( $label ) . '</label>';
-				$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '"  name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" ' .  $required  . ' >';
+				$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . $value . '"  name=' . $name . '" id="' . $id . '" ' .  $required  . ' >';
 		}
 
 		if ( $type != 'hidden' ) :
@@ -474,7 +474,7 @@ return;
 
 		$form_data = ! empty( $_POST[ 'form_data' ] ) ? json_decode( stripslashes( $_POST[ 'form_data' ] ) ) : '';
 		$formatted_data = array();
-		$formatted_data[ 'currency' ] = get_woocommerce_currency_symbol();
+		$formatted_data[ 'currency' ] = get_woocommerce_currency();
 
 		if ( ! empty( $form_data ) && is_array( $form_data ) ) {
 
@@ -496,8 +496,63 @@ return;
 			}
 		}
 
+
+		try {
+
+			if ( ! empty( $formatted_data ) && is_array( $formatted_data ) ) {
+				
+				$email_body = $this->render_form_data_into_table( $formatted_data );
+			}
+			function set_temp_content_type(){
+			    return "text/html";
+			}
+			add_filter( 'wp_mail_content_type','set_temp_content_type' );
+
+			$email_to = 'vermaa947@gmail.com';
+			$email_subject = 'Email subject';
+			$send_mail = wp_mail( $email_to, $email_subject, $email_body );
+		} catch (Exception $e) {
+						
+		}
+
 		echo json_encode( $formatted_data );
 		wp_die();
+	}
+
+
+	/**
+	 * Covert array to html.
+	 *
+	 * @since    1.0.0
+	 */
+	public function render_form_data_into_table( $formatted_data='' ) {
+
+		$email_body = '<table border="1" style="text-align:center;"><tr><th>Data</th><th>Value</th></tr>';
+		foreach ( $formatted_data as $key => $value ) {
+			
+			$key = ucwords( str_replace( '_', ' ', $key ) );
+			$key = ucwords( str_replace( '-', ' ', $key ) );
+
+			if ( is_array( $value ) ) {
+				
+				$email_body .= '<tr><td>' . $key . '</td><td>';
+
+				foreach ( $value as $k => $v ) {	
+					$email_body .= ucwords( $v ) . '<br>';
+				}
+
+				$email_body .= '</td></tr>';
+			}
+
+			else {
+
+				$email_body .= '  <tr><td>' . $key . '</td><td>' . ucwords( $value ) . '</td></tr>';
+			}
+		}
+
+		$email_body .= '</table>';
+		
+		return $email_body;
 	}
 
 // End of Class.
