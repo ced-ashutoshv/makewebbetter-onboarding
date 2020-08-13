@@ -299,7 +299,7 @@ return;
 				'id' => 'onboard-email',
 				'label' => esc_html__( 'What is the best email address to contact you?' ),
 				'type' => 'email',
-				'name' => '',
+				'name' => 'onboard-email',
 				'value' => $current_user_email,
 				'required' => 'yes',
 				'extra-class' => '',
@@ -309,7 +309,7 @@ return;
 				'id' => 'onboard-number',
 				'label' => esc_html__( 'What is your contact number?' ),
 				'type' => 'text',
-				'name' => '',
+				'name' => 'onboard-number',
 				'value' => '',
 				'required' => 'yes',
 				'extra-class' => '',
@@ -452,7 +452,7 @@ return;
 				 * Text/ Password/ Email.
 				 */
 				$html .= '<label class="on-boarding-label" for="'. esc_attr( $id ) .'">' . esc_html( $label ) . '</label>';
-				$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field' . esc_attr( $class ) . '" value="' . $value . '"  name=' . $name . '" id="' . $id . '" ' .  $required  . ' >';
+				$html .= '<input type="' . esc_attr( $type ) . '" class="on-boarding-' . esc_attr( $type ) . '-field ' . esc_attr( $class ) . '" value="' . esc_attr( $value ) . '"  name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" ' .  $required  . ' >';
 		}
 
 		if ( $type != 'hidden' ) :
@@ -496,7 +496,6 @@ return;
 			}
 		}
 
-
 		try {
 
 			if ( ! empty( $formatted_data ) && is_array( $formatted_data ) ) {
@@ -508,11 +507,16 @@ return;
 			}
 			add_filter( 'wp_mail_content_type','set_temp_content_type' );
 
-			$email_to = 'vermaa947@gmail.com';
+			$email_to = 'mwbdev13@gmail.com';
 			$email_subject = 'Email subject';
 			$send_mail = wp_mail( $email_to, $email_subject, $email_body );
+
+			remove_filter( 'wp_mail_content_type','set_temp_content_type' );
+
 		} catch (Exception $e) {
-						
+
+			echo json_encode( $e->getMessage() );
+			wp_die();
 		}
 
 		echo json_encode( $formatted_data );
