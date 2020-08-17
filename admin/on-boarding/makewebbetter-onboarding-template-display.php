@@ -17,7 +17,8 @@
 ?>
 
 <?php if ( ! empty( $form_fields ) ) : ?>
-	<div class="mwb-on-boarding-wrapper-background">
+	<div class="mwb-onboarding-section">
+		<div class="mwb-on-boarding-wrapper-background">
 		<div class="mwb-on-boarding-wrapper">
 			<div class="mwb-on-boarding-close-btn">
 				<a href="#">
@@ -41,5 +42,6 @@
 				</div>
 			</form>
 		</div>
+	</div>
 	</div>
 <?php endif; ?>

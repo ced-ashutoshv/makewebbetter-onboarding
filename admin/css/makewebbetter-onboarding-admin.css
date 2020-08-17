@@ -51,7 +51,7 @@
 * {
   box-sizing: border-box;
 }
-.mwb-on-boarding-wrapper-background {
+/* .mwb-on-boarding-wrapper-background {
   content: "";
   display: none;
   left: 0;
@@ -64,12 +64,12 @@
   transition: 0.5s linear all;
   width: 100%;
   z-index: 999;
-}
-.onboard-popup-show {
+} */
+/* .onboard-popup-show {
   top:1% !important;
   transition: 0.5s linear all;
-}
-.mwb-on-boarding-wrapper-background:after {
+} */
+/* .mwb-on-boarding-wrapper-background:after {
   background: rgba(0,0,0,0.4);
   bottom: 0;
   content: "";
@@ -78,7 +78,7 @@
   right: 0;
   top: 0;
   z-index: -1;
-}
+} */
 .mwb-on-boarding-wrapper {
   padding: 25px 15px;
 }
@@ -290,6 +290,18 @@ input#s2id_autogen1 {
 .select2-search-choice {
   padding: 10px !important;
 }
+.onboard-popup-body-control {
+  overflow: hidden;
+}
+span.select2.select2-container.select2-container--default {
+    width: 100% !important;
+}
+input.select2-search__field {
+    width: 100% !important;
+}
+li.select2-search.select2-search--inline {
+    width: 100% !important;
+}
 /*=====  End of MWB POPUP FORM CSS  ======*/
 /*=====================================
 =            MEDIA QUERIES            =
@@ -346,10 +358,10 @@ input[type="text"] {
   input[type="email"] {
     width: 99% !important;
   }
-  .onboard-popup-show {
-    top: 5% !important;
+  /* .onboard-popup-show {
+    top: 2% !important;
     transition: 0.5s linear all;
-  }
+  } */
 }
 @media only screen and (max-width: 453px) {
   .mwb-on-boarding-form-verify  {
@@ -395,3 +407,34 @@ input[type="text"] {
   }
 }
 /*=====  End of MEDIA QUERIES  ======*/
+/*===============================
+=            NEW CSS            =
+===============================*/
+.mwb-onboarding-section {
+  position: fixed;
+  background-color: rgba(0,0,0,0.6);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  height: 100%;
+}
+.mwb-on-boarding-wrapper-background {
+    content: "";
+    
+    left: 0;
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 25px;
+    right: 0;
+    transition: 0.5s linear all;
+    width: 100%;
+    z-index: 999;
+    transform: translateY(-100%);
+}
+.onboard-popup-show {
+    transform: translateY(5%);
+    transition: 0.5s linear all;
+}
+/*=====  End of NEW CSS  ======*/
