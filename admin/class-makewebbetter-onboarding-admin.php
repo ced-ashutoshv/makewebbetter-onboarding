@@ -74,8 +74,7 @@ class Makewebbetter_Onboarding_Admin {
 		 */
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_register_style( 'select2css', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.css', false, '1.0', 'all' );
-		    wp_enqueue_style( 'select2css' );
+		    wp_enqueue_style( 'select2css', plugin_dir_url( __FILE__ ) . 'css/select2.min.css', array(), $this->version, 'all' );
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/makewebbetter-onboarding-admin.css', array(), $this->version, 'all' );
 		}
 	}
@@ -101,8 +100,7 @@ class Makewebbetter_Onboarding_Admin {
 
 		if ( $this->is_valid_page_screen() ) {
 
-			wp_register_script( 'select2', '//cdnjs.cloudflare.com/ajax/libs/select2/3.4.8/select2.js', array( 'jquery' ), '1.0', true );
-		    wp_enqueue_script( 'select2' );
+		    wp_enqueue_script( 'select2', plugin_dir_url( __FILE__ ) . 'js/select2.min.js', array( 'jquery' ), $this->version, false );
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/makewebbetter-onboarding-admin.js', array( 'jquery' ), $this->version, false );
 
 			wp_localize_script(

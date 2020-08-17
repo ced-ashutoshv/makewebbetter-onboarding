@@ -11,12 +11,27 @@ jQuery(document).ready( function($) {
 		setTimeout( mwb_show_onboard_popup(), 1000 );
 	}
 
-	/* Submitting Form */
+	/* Close Button Click */
 	jQuery( document ).on( 'click','.mwb-on-boarding-close-btn a',function(e){
 		mwb_hide_onboard_popup();
 	});
 
+	/* Skip For a day. */
 	jQuery( document ).on( 'click','.mwb-on-boarding-no_thanks',function(e){
+
+		jQuery.ajax({
+            type: 'post',
+            dataType: 'json',
+            url: mwb.ajaxurl,
+            data: {
+                nonce : mwb.auth_nonce, 
+                action: 'skip_onboarding_popup' ,
+            },
+            success: function( msg ){
+                
+            }
+        });
+
 		mwb_hide_onboard_popup();
 	});
 
@@ -44,10 +59,12 @@ jQuery(document).ready( function($) {
 	/* Open Popup */
 	function mwb_show_onboard_popup() {
 		jQuery( '.mwb-on-boarding-wrapper-background' ).addClass( 'onboard-popup-show' );
+		jQuery( '.mwb-onboarding-section' ).show();
 	}
 
 	/* Close Popup */
 	function mwb_hide_onboard_popup() {
 		jQuery( '.mwb-on-boarding-wrapper-background' ).removeClass( 'onboard-popup-show' );
+		jQuery( '.mwb-onboarding-section' ).hide();
 	}
 });
